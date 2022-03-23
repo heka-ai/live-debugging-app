@@ -1,0 +1,43 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mediumapp-deployment
+  labels:
+    app: mediumapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mediumapp
+  template:
+    metadata:
+      labels:
+        app: mediumapp
+    spec:
+      containers:
+        - name: mediumapp
+          image: medium-app-image
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5000
+          resources:
+            requests:
+              cpu: 200m
+              memory: 200Mi
+            limits:
+              cpu: 400m
+              memory: 400Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mediumapp-service
+spec:
+  ports:
+    - port: 5000
+      protocol: TCP
+      targetPort: 5000
+  selector:
+    app: mediumapp
+  type: LoadBalancer
