@@ -1,13 +1,12 @@
 {
-  // Use IntelliSense to learn about possible attributes.
-  // Hover to view descriptions of existing attributes.
-  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "mediuam-app: Remote Attach",
+      "name": "medium-app: Remote Attach",
       "type": "python",
+      //attach debugger instead of a classic run
       "request": "attach",
+      //where should it listen
       "connect": {
         "host": "localhost",
         "port": 5678
@@ -16,6 +15,7 @@
         {
           "localRoot": "${workspaceFolder}",
           "cwd": "${workspaceFolder}",
+          //where the code is in your container (see Dockerfile)
           "remoteRoot": "/app"
         }
       ]

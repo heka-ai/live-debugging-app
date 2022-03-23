@@ -5,30 +5,6 @@ from flask import Flask, request
 
 app = Flask(__name__)
 
-@app.route("/")
-def index():
-    return "Web App with Python Flask!"
-
-
-@app.route("/cpu", methods=["GET"])
-def cpu_test():
-
-    res = 0
-    for i in range(1000):
-        res = res + 1
-
-    return f"This is function use high cpu : {res}"
-
-
-@app.route("/ram", methods=["GET"])
-def ram_test():
-
-    res = [0]
-    for i in range(100):
-        res = [0] * i
-
-    return f"This is function suse high ram : {res}"
-
 
 @app.route("/pizza-bug", methods=["POST"])
 def make_bugs():
@@ -44,7 +20,7 @@ def make_bugs():
 
 if __name__ == "__main__":
     try:
-        # Setup a logger for debugpy to print into stdout
+        # Setup a logger for debugpy
         debugpy_logger = logging.getLogger("debugpy")
         debugpy_logger.setLevel(logging.DEBUG)
         stdout_handler = logging.StreamHandler(sys.stdout)
@@ -64,5 +40,4 @@ if __name__ == "__main__":
             "🐞 debugpy - Got Runtime error. Ignore if running in Flask."
         )
 
-    # Create the debug mode app
     app.run(host="0.0.0.0", port=5000)
