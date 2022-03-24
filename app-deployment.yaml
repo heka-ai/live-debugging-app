@@ -2,22 +2,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mediumapp-deployment
+  name: live-debug-deployment
   labels:
-    app: mediumapp
+    app: live-debug
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: mediumapp
+      app: live-debug
   template:
     metadata:
       labels:
-        app: mediumapp
+        app: live-debug
     spec:
       containers:
-        - name: mediumapp
-          image: medium-app-image
+        - name: live-debug
+          image: live-debug-image
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 5000
@@ -32,12 +32,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: mediumapp-service
+  name: live-debug-service
 spec:
   ports:
     - port: 5000
       protocol: TCP
       targetPort: 5000
   selector:
-    app: mediumapp
+    app: live-debug
   type: LoadBalancer

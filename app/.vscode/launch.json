@@ -2,7 +2,7 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "medium-app: Remote Attach",
+      "name": "live-debug-app: Remote Attach",
       "type": "python",
       //attach debugger instead of a classic run
       "request": "attach",
